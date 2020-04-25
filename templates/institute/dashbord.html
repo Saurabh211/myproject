@@ -1,0 +1,55 @@
+{% load static %}
+{% include 'login/header.html' %}
+<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/owl-theme.css' %}" rel="stylesheet">
+<section class="home-header">
+    <div class="container">
+        <div class="center-box">
+            <h1 class="main-heading text-white text-center mb-2">Studing is Now Smarter</h1>
+            <p class="text-white mb-sm-5 text-sm-center mt-2">Looking for Smart Study? Look no further!</p>
+        </div>
+    </div>
+</section>
+
+<section style="position: relative;">
+    <img src="{% static 'img/body-bg.jpg' %}" class="body-bg" alt="" />
+    <div class="container py-3">
+        <p class="text-center text-success mb-1">Welcome {{request.user.full_name}}</p>
+        <h2 class="text-center sub-heading my-1">Please Select any one !</h2>
+        <div id="vehicles" class="tab-detail" style="display: block">
+            <div class="row">
+                <div class="col-6 col-md-3 col-xl-2 mb-4">
+                    <div class="bg-white rounded shadow p-3 text-center product-card">
+                        <figure class="d-flex align-self-center m-0">
+                            <img src="{% static 'img/c-1.jpg' %}" alt="name" class="d-block mx-auto" /></figure>
+                        <p class="my-0 doted-text">Attandance</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-xl-2 mb-4">
+                    <div class="bg-white rounded shadow p-3 text-center product-card">
+                        <figure class="d-flex align-self-center m-0">
+                            <img src="{% static 'img/c-2.jpg' %}" alt="name" class="d-block mx-auto" /></figure>
+                        <p class="my-0 doted-text">HomeWork</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-xl-2 mb-4">
+                    <div class="bg-white rounded shadow p-3 text-center product-card">
+                        <figure class="d-flex align-self-center m-0">
+                            <img src="{% static 'img/c-3.jpg' %}" alt="name" class="d-block mx-auto" /></figure>
+                        <p class="my-0 doted-text">Assignment</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-xl-2 mb-4">
+                    <div class="bg-white rounded shadow p-3 text-center product-card">
+                        <a href="/institute/subject/">
+                        <figure class="d-flex align-self-center m-0">
+                            <img src="{% static 'img/c-4.jpg' %}" alt="name" class="d-block mx-auto" /></figure>
+                        <p class="my-0 doted-text">Videos</p></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'login/footer.html' %}

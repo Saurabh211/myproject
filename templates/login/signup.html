@@ -1,0 +1,273 @@
+{% load static %}
+{% include 'login/header.html' %}
+<style>
+    #bChecksignup {
+        white-space: nowrap;
+        max-width: 100%;
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+</style>
+
+<section class="py-3 py-lg-4 py-xl-5">
+    <div class="container">
+        <div class="login-container p-2 p-md-4 p-lg-4 p-lg-5 rounded">
+
+            <!--                Sign up section -->
+            <div id="sign_up" class="tab-login" style="display: none">
+                <div class="row align-items-center">
+                    <div class="col-md-5 col-lg-6 mb-4">
+                        <h1 class="text-white">Welcome</h1>
+                        <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+                    </div>
+                    <div class="col-md-7 col-lg-6">
+                        <form class="login-box bg-white p-2 p-sm-4 p-xl-5 rounded" id="SignUpForm" method="post">
+                            {% csrf_token %}
+                            <h2 class="mt-0">Sign up as:</h2><br><br>
+                            <div class="form-style px-2">
+                                <div class="input-group mb-4">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" name="full_name" id="full_name" placeholder="Full Name" minlength="5" maxlength="20" class="from-input" required />
+                                    <!--                            <label class="error">Enter only alphabets only</label>-->
+                                </div>
+                                <div class="input-group mb-4">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email" id="username" placeholder="Email" class="from-input" required />
+                                    <label id="registered-email-error" class="error" style="font-size:12px"></label>
+                                    <!--                            <label class="error">Enter only alphabets only</label>-->
+                                </div>
+                                <div class="input-group mb-4 password">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="password" id="password" minlength="8" maxlength="20" placeholder="Password" class="from-input" required />
+                                    <span onclick="passwordSHOW()"></span>
+                                </div>
+                                <div class="input-group mb-4 password">
+                                    <label class="form-label">Institute code</label>
+                                    <input type="text" name="code" id="code" minlength="8" maxlength="20" placeholder="Institute Code" class="from-input" required />
+                                </div>
+                                <div class="input-group mb-4 password">
+                                    <select class="from-input rounded px-2" name="class" id="cat-1" required>
+                                        <option selected disabled>Select class</option>
+                                        <option value="nine">9 th</option>
+                                        <option value="ten">10 th</option>
+                                        <option value="eleven">11 th</option>
+                                        <option value="twelve">12 th</option>
+                                    </select>
+                                </div>
+                                <div class="input-group checkbox mb-3">
+                                    <input type="checkbox" name="tnc_signup" id="tnc_signup" />
+                                    <label class="form-label" for="tnc_signup">I agree to terms & conditions and GDPR rights.</label>
+                                </div>
+                                <div class="input-group checkbox mb-3">
+                                    <span class="btn btn-success rounded" onclick="sign_up()">Register</span>
+                                </div>
+                            </div>
+                            <div class="px-3 mb-3">
+<!--                                <p class="d-flex align-items-center justify-content-center social"><span style="line-height: 1;" class="my-2 mr-2">Login With:</span>-->
+<!--                                    <a href="javascript:;" class="icon face mx-2 shadow"></a>-->
+<!--                                    <a href="javascript:;" class="icon gmail shadow"></a>-->
+<!--                                </p>-->
+                            </div>
+                            <p class="px-3 text-center">
+                                <a href="javascript:;" class="show-login" style="text-decoration: underline;">Already have an account? <strong>Login</strong>
+                                </a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--                login section-->
+            <div id="login" class="tab-login" style="display: block">
+                <div class="row align-items-center">
+                    <div class="col-md-5 col-lg-6 mb-3">
+                        <h1 class="text-white">Welcome</h1>
+                        <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+                    </div>
+                    <div class="col-md-7 col-lg-6">
+                        <form class="login-box bg-white p-2 p-sm-4 p-xl-5 rounded" id="LoginForm" method="post">{% csrf_token %}
+                            <h2 class="mt-0">Login</h2><br>
+                            <div class="form-style px-2">
+                                <div class="input-group mb-4">
+                                    <label class="form-label">Email/Phone</label>
+                                    <input type="hidden" name="source" value="web" class="from-input" required />
+                                    <input type="text" name="username" id="login_username" placeholder="Email/Phone" class="from-input" required />
+                                    <label id="registered-login-error" class="error" style="font-size:12px"></label>
+                                    <!--                            <label class="error">Enter only alphabets only</label>-->
+                                </div>
+                                <div class="input-group mb-4 password">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="password" id="login_password" placeholder="Password" class="from-input" required />
+                                    <span onclick="passwordSHOWs()"></span>
+                                </div>
+                                <div class="input-group text-right mb-3">
+                                    <a href="javascript:;" class="show-forgot">Forgot Password</a>
+                                </div>
+                                <div class="input-group checkbox mb-3">
+                                    <span class="btn btn-success rounded" onclick="login()">Login</span>
+                                </div>
+                            </div>
+                            <div class="px-3 mb-3">
+                                <p class="d-flex align-items-center justify-content-center social"><span style="line-height: 1;" class="my-2 mr-2">Login With:</span>
+                                    <a href="javascript:;" class="icon face mx-2 shadow"></a>
+                                    <a href="javascript:;" class="icon gmail shadow"></a>
+                                </p>
+                            </div>
+                            <p class="px-3 text-center">
+                                <a href="javascript:;" class="show-signup" style="text-decoration: underline;">Dont have an account? <strong>Register</strong>
+                                </a>
+                            </p>
+                            <input type="hidden" id="registeration_source" name="registeration_source" value="normal">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--                otp section-->
+            <div id="otp" class="tab-login" style="display: none">
+                <div class="row align-items-center">
+                    <div class="col-md-5 col-lg-6 mb-4">
+                        <h1 class="text-white">Authentication Required</h1>
+                        <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+                    </div>
+                    <div class="col-md-7 col-lg-6">
+                        <form class="login-box bg-white p-2 p-sm-4 p-xl-5 rounded" method="post" id="user_passcode">{% csrf_token %}
+                            <div class="d-flex mb-4">
+                                <img src="{% static 'img/OTP.jpg' %}" alt="otp" class="d-block mx-auto">
+                            </div>
+                            <div class="form-style px-2">
+                                <div class="input-group mb-4">
+                                    <label class="form-label ">Enter OTP</label>
+                                    <input type="hidden" name="user_id" id="user_id" value="">
+                                    <input type="password" name="passcode" id="passcode" placeholder="2553" minlength="4" maxlength="4" class="from-input" required style="letter-spacing: .5rem" />
+                                    <label id="registered-otp-error" class="error" style="font-size:12px"></label>
+                                    <span class="resend">Resend OTP</span>
+                                </div>
+                                <div class="input-group checkbox mb-3">
+                                    <span class="btn btn-success rounded" onclick="otp_send()">Continue</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--forgot password section-->
+            <div id="forgot" class="tab-login" style="display: none">
+                <div class="row align-items-center">
+                    <div class="col-md-5 col-lg-6 mb-4">
+                        <h1 class="text-white">Forgot Password?</h1>
+                        <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+                    </div>
+                    <div class="col-md-7 col-lg-6">
+                        <form class="login-box bg-white p-2 p-sm-4 p-xl-5 rounded" id="ForgetPassword" method="post" action="/appuser/">{% csrf_token %}
+                            <div class="d-flex mb-4">
+                                <img src="{% static 'img/forgot_password.jpg' %}" alt="otl" class="d-block mx-auto">
+                            </div>
+                            <div class="form-style px-2">
+                                <div class="input-group mb-4">
+                                    <label class="form-label">Email/Phone Number</label>
+                                    <input type="text" name="forget_username" id="forget_username" placeholder="Email/Phone Number" class="from-input" required />
+                                    <label id="forget-email-error" class="error" style="font-size:12px"></label>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <button class="btn btn-success rounded" onclick="forget_pass()">Submit</button>
+                                </div>
+                                <p class="px-3 text-center">
+                                    <a href="javascript:;" class="show-signup" style="text-decoration: underline;"><strong>Register</strong>
+                                    </a> or
+                                    <a href="javascript:;" class="show-login" style="text-decoration: underline;"><strong>Login</strong>
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include 'login/footer.html' %}
+
+<script>
+    function sign_up() {
+        if ($("#SignUpForm").valid()) {
+            if ($("#tnc_signup").prop("checked") == false) {
+                alert("Please accept terms & conditions.");
+                return false;
+            }
+            $('body').addClass("loaders");
+            $.ajax({
+                type: 'POST',
+                url: '/login_module/register/',
+                data: $("#SignUpForm").serialize(),
+                dataType: "json",
+                success: function(data) {
+                    var user_id = data.user_id
+                    $("#user_id").val(user_id);
+                    if (data.message != "success") {
+                        $('body').removeClass("loaders");
+                        $("#registered-email-error").text(data.message);
+                        $("#registered-email-error").show();
+                        return false;
+                    } else {
+                        $(".tab-login").hide()
+                        $("#login").show();
+                    }
+                }
+            });
+        }
+    };
+
+
+
+    function login() {
+        if ($("#LoginForm").valid()) {
+            $('body').addClass("loaders");
+            $.ajax({
+                type: 'POST',
+                url: '/login_module/login/',
+                data: $("#LoginForm").serialize(),
+                dataType: "json",
+                success: function(data) {
+                    if (data.message != "success") {
+                        $('body').removeClass("loaders");
+                        $("#registered-login-error").text(data.message);
+                        $("#registered-login-error").show();
+                        return false;
+                    } else {
+                            window.location.href = "/institute/dashboard/"
+                        }
+                    }
+            });
+        }
+    };
+
+    function forget_pass() {
+        if ($("#ForgetPassword").valid()) {
+            $('body').addClass("loaders");
+            $.ajax({
+                type: 'POST',
+                url: '/login_module/forget_password/',
+                data: $("#ForgetPassword").serialize(),
+                dataType: "json",
+                success: function(data) {
+                    if (data.message != "Successfully registered.") {
+                        $('body').removeClass("loaders");
+                        $("#forget-email-error").text(data.message);
+                        $("#forget-email-error").show();
+                        return false;
+                    } else {
+                        window.location.href = "/webuser/login/"
+                    }
+                }
+            });
+        }
+    };
+
+</script>

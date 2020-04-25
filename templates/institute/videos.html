@@ -1,0 +1,35 @@
+{% load static %}
+{% include 'login/header.html' %}
+<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/owl-theme.css' %}" rel="stylesheet">
+<section class="home-header">
+    <div class="container">
+        <div class="center-box">
+            <h1 class="main-heading text-white text-center mb-2">Equipment Rentals is Now Smarter</h1>
+            <p class="text-white mb-sm-5 text-sm-center mt-2">Looking for equipment rental? Look no further!</p>
+        </div>
+    </div>
+</section>
+
+<section style="position: relative;">
+    <img src="{% static 'img/body-bg.jpg' %}" class="body-bg" alt="" />
+    <div class="container py-3">
+        <p class="text-center text-success mb-1">Popular Vehicles Rental</p>
+        <h2 class="text-center sub-heading my-1">Check the new equipment arrivals for rent here!</h2>
+        <div id="vehicles" class="tab-detail" style="display: block">
+            <div class="row">
+                {% for video in videos %}
+                <div class="col-6 col-md-3 col-xl-2 mb-4">
+                    <div class="bg-white rounded shadow p-3 text-center product-card">
+                        <figure class="d-flex align-self-center m-0">
+                            <img src="{% static 'img/c-1.jpg' %}" alt="name" class="d-block mx-auto" /></figure>
+                        <p class="my-0 doted-text">{{video.video_url}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'login/footer.html' %}
